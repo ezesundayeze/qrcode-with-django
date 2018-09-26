@@ -9,3 +9,7 @@ pip3 install -r requirements.txt
 ```
 
 Please, run the command in a virtual environment to install all the dependencies.
+
+Here is a clip
+
+![](qrcode.gif)
