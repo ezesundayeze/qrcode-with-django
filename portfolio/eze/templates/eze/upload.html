@@ -1,0 +1,112 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"
+    />
+    <link href="//cdn.muicss.com/mui-0.9.41/css/mui.min.css" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="{% static 'eze/style.css' %}">
+    <title>Barcode Creator & Reader</title>
+</head>
+
+<body>
+    <div class="mui-container">
+        <header class="mui-appbar mui--z1">
+            <div class="mui-container">
+                <table>
+                    <tr class="mui--appbar-height">
+                        <td class="mui--text-title">Barcode Int'l</td>
+                        <td align="mui--text-right">
+                            <ul class="mui-list--inline mui--text-body2">
+                                <li>
+                                    <a href="#">About Bar Codes</a>
+                                </li>
+
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </header>
+        <!--
+              
+                Container is centered on page with 15px of
+                padding on either side. The inner width is
+                fluid for small viewports and has a max
+                width for larger dimensions:
+              
+                * 570px (≥ 544px)
+                * 740px (≥ 768px)
+                * 960px (≥ 992px)
+                * 1170px (≥ 1200px)
+                
+                -->
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div id="content-wrapper" class="mui--text-center">
+
+            <div class="mui-row">
+                <div class="mui-col-xs-6 mui-col-md-4"></div>
+                <div class="mui-col-xs-6 mui-col-md-4">Create And Read Barcodes</div>
+                <div class="mui-col-xs-6 mui-col-md-4"></div>
+            </div>
+            <div class="mui-row">
+                <div class="mui-col-xs-6 mui-col-md-4"></div>
+                <div class="mui-col-xs-6 mui-col-md-4">
+
+                    <ul class="mui-tabs__bar mui-tabs__bar--justified">
+                        <li class="mui--is-active">
+                            <a data-mui-toggle="tab" data-mui-controls="pane-justified-1">Create Barcode</a>
+                        </li>
+                        <li>
+                            <a data-mui-toggle="tab" data-mui-controls="pane-justified-2">Read Barcode</a>
+                        </li>
+
+                    </ul>
+
+                    <div class="mui-tabs__pane mui--is-active" id="pane-justified-1">
+                        <form class="mui-form" method="post" action="upload">
+                            {% csrf_token %}
+                            <div class="mui-textfield">
+                                <input type="Text" name="data">
+                                <label>Enter Barcode Text Content</label>
+                            </div>
+
+                            <button type="submit" class="mui-btn mui-btn--accent">Create Barcode</button>
+                        </form>
+                    </div>
+                    <div class="mui-tabs__pane" id="pane-justified-2">
+                        <form method="post" action="read" class="mui-form" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mui-textfield">
+                                <input name="bcode" type="file" accept="image">
+                                <label>Upload barcode image</label>
+                            </div>
+
+                            <button type="submit" class="mui-btn mui-btn--accent">Read Barcode</button>
+                        </form>
+                    </div>
+                    <img src="{{Result}}"> {{Success}} {{code}}
+                </div>
+                <div class="mui-col-xs-6 mui-col-md-4"></div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+    <script src="//cdn.muicss.com/mui-0.9.41/js/mui.min.js"></script>
+</body>
+
+</html>
